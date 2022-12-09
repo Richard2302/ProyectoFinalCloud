@@ -20,7 +20,6 @@ dfMadrid = dfMadrid.select(dfMadrid['listing_id'].alias('id'),dfMadrid['date'][6
 
 
 meses = ["09", "10", "11", "12", "01", "02", "03", "04", "05", "06", "07", "08"]
-
 mesLibres   = []
 mesOcupados = []
 for mes in meses:
@@ -39,14 +38,16 @@ df = pd.DataFrame(datos)
 print(df)
 
 #VOLCAR LOS RESULTADOS EN UN EXCEL
-df.to_excel("salida_airbnb.xlsx", index=False)
+df.to_excel("salida_airbnb_madrid.xlsx", index=False)
 
 #HACER EL GRAFICO
 
-plt.plot(meses, mesLibres)
-plt.xlabel("Meses")
-plt.ylabel("Dias")
+fig, ax = plt.subplots()
+
+ax.plot(meses, mesLibres, color = 'tab:green', label = "Libres")
+ax.plot(meses, mesOcupados, color = 'tab:red', label = "Ocupados")
+ax.set_title('Airbnbs libres/Ocupados Madrid por mes año 2019/2020', loc = "left", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
+ax.set_xlabel("MESES", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
+ax.set_ylabel("Nº Airbnbs", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
+ax.legend(loc = 'upper right')
 plt.show()
-
-
-
