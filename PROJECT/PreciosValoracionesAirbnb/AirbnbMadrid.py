@@ -10,7 +10,7 @@ conf = SparkConf().setAppName('AirbnbMadrid')
 sc = SparkContext(conf = conf)
 spark = SparkSession(sc)
 
-path = "Airbnb madrid.csv"
+path = "Airbnb_madrid.csv"
 
 df = spark.read.option('header', 'true').csv(path)
 
